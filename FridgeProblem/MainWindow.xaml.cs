@@ -50,7 +50,7 @@ namespace FridgeProblem
             }
             else
             {
-                var checkingFridge = new Fridge(double.Parse(textBoxFridgeHeight.Text),
+                var checkingFridge = new Cuboid(double.Parse(textBoxFridgeHeight.Text),
                     double.Parse(textBoxFridgeLength.Text),
                     double.Parse(textBoxFridgeWidth.Text));
                 var check = false;
@@ -71,9 +71,10 @@ namespace FridgeProblem
                         MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-
-                    check = checkingFridge.GetInCheck(double.Parse(textBoxDoorwayHeight.Text),
+                    var checkingDoorway = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
                         double.Parse(textBoxDoorwayWidth.Text));
+                    var solution = new FridgePushIn();
+                    check = solution.PushInCheck(checkingFridge,checkingDoorway);
                 }
 
                 if (comboBox.SelectedItem == comboBox.Items[1])
@@ -94,8 +95,10 @@ namespace FridgeProblem
                         return;
                     }
 
-                    check = checkingFridge.GetInCheck(double.Parse(textBoxDoorwayHeight.Text),
+                    var checkingWindow = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
                         double.Parse(textBoxDoorwayWidth.Text));
+                    var solution = new FridgePushIn();
+                    check = solution.PushInCheck(checkingFridge, checkingWindow);
                 }
 
                 if (comboBox.SelectedItem == comboBox.Items[2])
@@ -113,8 +116,9 @@ namespace FridgeProblem
                         MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-
-                    check = checkingFridge.GetInCheck(double.Parse(textBoxWindowDiameter.Text));
+                    var checkingWindow = new Circle(double.Parse(textBoxWindowDiameter.Text));
+                    var solution = new FridgePushIn();
+                    check = solution.PushInCheck(checkingFridge, checkingWindow);
                 }
 
                 //output results
@@ -201,9 +205,15 @@ namespace FridgeProblem
             else if (e.Text == ",")
             {
                 // check if dot in the beginning of number => not accept
-                if (((TextBox) sender).Text.Length == 0) e.Handled = true;
+                if (((TextBox)sender).Text.Length == 0)
+                {
+                    e.Handled = true;
+                }
                 // check if dot occurs ore than once in number => not accept
-                if (((TextBox) sender).Text.IndexOf(e.Text) > -1) e.Handled = true;
+                if (((TextBox)sender).Text.IndexOf(e.Text) > -1)
+                {
+                    e.Handled = true;
+                }
             }
         }
 
