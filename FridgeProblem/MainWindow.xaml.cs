@@ -54,7 +54,7 @@ namespace FridgeProblem
                     double.Parse(textBoxFridgeLength.Text),
                     double.Parse(textBoxFridgeWidth.Text));
                 var check = false;
-                if (comboBox.SelectedItem == comboBox.Items[0])
+                if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
                 {
                     // check if all parameters of the doorway were entered
                     if (textBoxDoorwayHeight.Text == string.Empty ||
@@ -77,7 +77,7 @@ namespace FridgeProblem
                     check = solution.PushInCheck(checkingFridge,checkingDoorway);
                 }
 
-                if (comboBox.SelectedItem == comboBox.Items[1])
+                if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
                 {
                     // check if all parameters of the window were entered
                     if (textBoxDoorwayHeight.Text == string.Empty ||
@@ -101,7 +101,7 @@ namespace FridgeProblem
                     check = solution.PushInCheck(checkingFridge, checkingWindow);
                 }
 
-                if (comboBox.SelectedItem == comboBox.Items[2])
+                if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
                 {
                     // check if all parameters of the window were entered
                     if (textBoxWindowDiameter.Text == string.Empty)
@@ -220,6 +220,19 @@ namespace FridgeProblem
         private bool IsNumber(string inputText)
         {
             return int.TryParse(inputText, out var output);
+        }
+
+        private void ComboBoxCuboid_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ComboBoxCylinder_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ComboBoxSphere_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
