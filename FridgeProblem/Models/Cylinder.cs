@@ -8,15 +8,15 @@ namespace FridgeProblem
 {
     class Cylinder : Circle
     {
-        public Cylinder(double height, double diameter) : base(diameter)
-        {
-            Height = height;
-        }
-
         public double Height
         {
             get;
             set;
+        }
+
+        public Cylinder(double height, double diameter) : base(diameter)
+        {
+            Height = height;
         }
     }
 }

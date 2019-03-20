@@ -13,10 +13,12 @@ namespace FridgeProblem
             get;
             set;
         }
+
         public Cuboid(double heigth, double length, double width) : base(heigth, width)
         {
             Length = length;
         }
+
         public Rectangle SearchMinSides()
         {
             double[] minSides = { this.Height, this.Length, this.Width };

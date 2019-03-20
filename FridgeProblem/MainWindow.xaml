@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FridgeProblem"
         mc:Ignorable="d"
-        Title="Fridge get in solver" Height="335" Width="500" Icon="cold.ico" ResizeMode="CanMinimize">
+        Title="Fridge get in solver" Height="340" Width="500" Icon="cold.ico" ResizeMode="CanMinimize">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
             <GradientStop Color="Black" Offset="0" />
@@ -13,64 +13,64 @@
             <GradientStop Color="#FEFFFFFF" />
         </LinearGradientBrush>
     </Window.Background>
-    <Grid>
+    <Grid Margin="0,0,0,1">
         <Label x:Name="label" Content="Enter Fridge parameters:" HorizontalAlignment="Left" Height="29"
                Margin="26,29,0,0" VerticalAlignment="Top" Width="215" />
-        <Label x:Name="labelFrHeight" Content="Height" HorizontalAlignment="Left" Margin="26,63,0,0"
+        <Label x:Name="labelFrLength" Content="Length" HorizontalAlignment="Left" Margin="16,65,0,0"
                VerticalAlignment="Top" />
-        <Label x:Name="labelFrLength" Content="Length" HorizontalAlignment="Left" Margin="26,94,0,0"
+        <Label x:Name="labelFrHeight" Content="Height" HorizontalAlignment="Left" Margin="16,95,0,0"
                VerticalAlignment="Top" />
-        <Label x:Name="labelFrWidth" Content="Width" HorizontalAlignment="Left" Margin="26,125,0,0"
+        <Label x:Name="labelFrWidth" Content="Width" HorizontalAlignment="Left" Margin="16,125,0,0"
                VerticalAlignment="Top" />
-        <TextBox x:Name="textBoxFridgeHeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="77,67,0,0" PreviewTextInput="textBox_PreviewTextInput" />
-        <TextBox x:Name="textBoxFridgeLength" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="77,95,0,0" PreviewTextInput="textBox_PreviewTextInput" />
-        <TextBox x:Name="textBoxFridgeWidth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="77,123,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+        <Label x:Name="labelFridgeDiameter" Content="Diameter" HorizontalAlignment="Left" Margin="16,65,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Label x:Name="labelDw" Content="Enter doorway parameters:" HorizontalAlignment="Left" Height="29"
                VerticalAlignment="Top" Width="215" Margin="255,29,0,0" />
         <Label x:Name="labelDwHeight" Content="Height" HorizontalAlignment="Left" VerticalAlignment="Top"
-               Margin="256,62,0,0" />
+               Margin="256,65,0,0" />
         <Label x:Name="labelDwWidth" Content="Width" HorizontalAlignment="Left" VerticalAlignment="Top"
-               Margin="256,93,0,0" />
-        <TextBox x:Name="textBoxDoorwayHeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="317,66,0,0" PreviewTextInput="textBox_PreviewTextInput" />
-        <TextBox x:Name="textBoxDoorwayWidth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="317,94,0,0" PreviewTextInput="textBox_PreviewTextInput" />
-        <Button x:Name="buttonCheck" Content="Fridge get in check" HorizontalAlignment="Left" VerticalAlignment="Top"
-                Width="138" Margin="40,164,0,0" Height="35" FontSize="15" Click="buttonCheck_Click" />
-        <Label x:Name="labelResult" Content="Select shape of your fridge" HorizontalAlignment="Left" Height="32" Margin="251,204,0,0"
+               Margin="256,95,0,0" />
+        <Label x:Name="label1" Content="Select through what you will push" HorizontalAlignment="Left" Height="32"
+               Margin="255,166,0,0" VerticalAlignment="Top" Width="202" />
+        <Label x:Name="label2" Content="Select shape of your fridge" HorizontalAlignment="Left" Height="32" Margin="43,166,0,0"
                VerticalAlignment="Top" Width="180" />
-        <ComboBox x:Name="comboBoxDoorway" HorizontalAlignment="Left" Margin="255,173,0,0" VerticalAlignment="Top" Width="181"
-                  SelectedIndex="0" Height="26" FontSize="15">
-            <ComboBoxItem Content="Doorway" HorizontalAlignment="Left" Width="181"
-                          Selected="ComboBoxRectangle_Selected" FontSize="15" Margin="0,0,-2,0" />
-            <ComboBoxItem Content="Rectangle window" HorizontalAlignment="Left" Width="181"
-                          Selected="ComboBoxRectangleWindow_Selected" FontSize="15" Margin="0,0,-2,0" />
-            <ComboBoxItem Content="Round Window" HorizontalAlignment="Left" Width="179"
-                          Selected="ComboBoxRoundWindow_Selected" FontSize="15" />
-        </ComboBox>
         <Label x:Name="labelWindow" Content="Enter window parameters:" HorizontalAlignment="Left" Height="29"
                VerticalAlignment="Top" Width="215" Margin="255,29,0,0" Visibility="Hidden" />
         <Label x:Name="labelWindowDiameter" Content="Diameter" HorizontalAlignment="Left" VerticalAlignment="Top"
                Margin="256,62,0,0" Visibility="Hidden" />
+        <TextBox x:Name="textBoxFridgeLength" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" Margin="77,65,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+        <TextBox x:Name="textBoxFridgeHeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" Margin="77,95,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+        <TextBox x:Name="textBoxFridgeWidth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" Margin="77,125,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+        <TextBox x:Name="textBoxFridgeDiameter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120" Margin="77,65,0,0" PreviewTextInput="textBox_PreviewTextInput" Visibility="Hidden"/>
         <TextBox x:Name="textBoxWindowDiameter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
                  VerticalAlignment="Top" Width="120" Margin="317,66,0,0" Visibility="Hidden"
                  PreviewTextInput="textBox_PreviewTextInput" />
-        <Label x:Name="label1" Content="Select through what you will push" HorizontalAlignment="Left" Height="32"
-               Margin="251,141,0,0" VerticalAlignment="Top" Width="202" />
-        <Label x:Name="labelFridgeDiameter" Content="Diameter" HorizontalAlignment="Left" Margin="26,214,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBoxFridgeShape"  HorizontalAlignment="Left" Margin="255,235,0,0" VerticalAlignment="Top" Width="181"
+        <TextBox x:Name="textBoxDoorwayHeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" Margin="317,65,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+        <TextBox x:Name="textBoxDoorwayWidth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" Margin="317,95,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+        <Button x:Name="buttonCheck" Content="Fridge get in check" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Width="181" Margin="259,241,0,0" Height="48" FontSize="15" Click="buttonCheck_Click" />
+        <ComboBox x:Name="comboBoxDoorway" HorizontalAlignment="Left" Margin="259,198,0,0" VerticalAlignment="Top" Width="181"
                   SelectedIndex="0" Height="26" FontSize="15">
-            <ComboBoxItem/>
-            <ComboBoxItem Content="Cuboid Shape" HorizontalAlignment="Left" Width="118"
+            <ComboBoxItem Content="Doorway" HorizontalAlignment="Left" Width="180"
+                          Selected="ComboBoxRectangle_Selected" FontSize="15" Margin="0,0,-2,0" />
+            <ComboBoxItem Content="Rectangle window" HorizontalAlignment="Left" Width="180"
+                          Selected="ComboBoxRectangleWindow_Selected" FontSize="15" Margin="0,0,-2,0" />
+            <ComboBoxItem Content="Round Window" HorizontalAlignment="Left" Width="180"
+                          Selected="ComboBoxRoundWindow_Selected" FontSize="15" Margin="0,0,-2,0" />
+        </ComboBox>
+        <ComboBox x:Name="comboBoxFridgeShape"  HorizontalAlignment="Left" Margin="47,198,0,0" VerticalAlignment="Top" Width="181"
+                  SelectedIndex="0" Height="26" FontSize="15">
+            <ComboBoxItem Content="Cuboid Shape" HorizontalAlignment="Left" Width="180"
                           Selected="ComboBoxCuboid_Selected" FontSize="15" Margin="0,0,-2,0" />
-            <ComboBoxItem Content="Cylinder Shape" HorizontalAlignment="Left" Width="118"
+            <ComboBoxItem Content="Cylinder Shape" HorizontalAlignment="Left" Width="180"
                           Selected="ComboBoxCylinder_Selected" FontSize="15" Margin="0,0,-2,0" />
-            <ComboBoxItem Content="Sphere Shape" HorizontalAlignment="Left" Width="118"
+            <ComboBoxItem Content="Sphere Shape" HorizontalAlignment="Left" Width="180"
                           Selected="ComboBoxSphere_Selected" FontSize="15" Margin="0,0,-2,0" />
         </ComboBox>
-
     </Grid>
 </Window>

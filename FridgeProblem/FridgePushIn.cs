@@ -8,22 +8,6 @@ namespace FridgeProblem
 {
     class FridgePushIn : IPushIn
     {
-        //public Fridge FridgeToPush
-        //{
-        //    get;
-        //    set;
-        //}
-        //public Doorway DoorwayToPush
-        //{
-        //    get;
-        //    set;
-        //}
-        //public FridgePushIn (Fridge fridge, Doorway doorway)
-        //{
-        //    FridgeToPush = fridge;
-        //    DoorwayToPush = doorway;
-        //}
-     
         public bool PushInCheck(Cuboid fridge, Rectangle doorway)
         {
             Rectangle fridgeMinSides = fridge.SearchMinSides();
@@ -52,6 +36,7 @@ namespace FridgeProblem
                 return false;
             }
         }
+
         public bool PushInCheck(Sphere fridge, Rectangle doorway)
         {
             if (fridge.Diameter <= Math.Min(doorway.Height, doorway.Width))
@@ -63,6 +48,7 @@ namespace FridgeProblem
                 return false;
             }
         }
+
         public bool PushInCheck(Cuboid fridge, Circle doorway)
         {
             Rectangle fridgeMinSides = fridge.SearchMinSides();
@@ -75,6 +61,7 @@ namespace FridgeProblem
                 return false;
             }
         }
+
         public bool PushInCheck(Cylinder fridge, Circle doorway)
         {
             Sphere sphereFridge = new Sphere(fridge.Diameter);
@@ -88,6 +75,7 @@ namespace FridgeProblem
                 return false;
             }
         }
+
         public bool PushInCheck(Sphere fridge, Circle doorway)
         {
             if (fridge.Diameter <= doorway.Diameter)
@@ -99,7 +87,5 @@ namespace FridgeProblem
                 return false;
             }
         }
-
-
     }
 }

@@ -13,3 +13,6 @@ FridgeProblem/bin
 FridgeProblem/obj
 storage.ide-shm
 *.ide
+*.ide
+*.ide-shm
+*.ide-wal
