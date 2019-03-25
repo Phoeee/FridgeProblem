@@ -16,3 +16,6 @@ storage.ide-shm
 *.ide
 *.ide-shm
 *.ide-wal
+.vs/FridgeProblem/v15/Server/sqlite3/storage.ide
+.vs/FridgeProblem/v15/Server/sqlite3/storage.ide-shm
+.vs/FridgeProblem/v15/Server/sqlite3/storage.ide-wal

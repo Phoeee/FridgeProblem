@@ -38,22 +38,22 @@
         <Label x:Name="labelWindowDiameter" Content="Diameter" HorizontalAlignment="Left" VerticalAlignment="Top"
                Margin="256,62,0,0" Visibility="Hidden" />
         <TextBox x:Name="textBoxFridgeLength" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="77,65,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+                 VerticalAlignment="Top" Width="120" Margin="77,65,0,0" PreviewTextInput="TextBox_PreviewTextInput" />
         <TextBox x:Name="textBoxFridgeHeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="77,95,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+                 VerticalAlignment="Top" Width="120" Margin="77,95,0,0" PreviewTextInput="TextBox_PreviewTextInput" />
         <TextBox x:Name="textBoxFridgeWidth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="77,125,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+                 VerticalAlignment="Top" Width="120" Margin="77,125,0,0" PreviewTextInput="TextBox_PreviewTextInput" />
         <TextBox x:Name="textBoxFridgeDiameter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="120" Margin="77,65,0,0" PreviewTextInput="textBox_PreviewTextInput" Visibility="Hidden"/>
+                 VerticalAlignment="Top" Width="120" Margin="77,65,0,0" PreviewTextInput="TextBox_PreviewTextInput" Visibility="Hidden"/>
         <TextBox x:Name="textBoxWindowDiameter" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
                  VerticalAlignment="Top" Width="120" Margin="317,66,0,0" Visibility="Hidden"
-                 PreviewTextInput="textBox_PreviewTextInput" />
+                 PreviewTextInput="TextBox_PreviewTextInput" />
         <TextBox x:Name="textBoxDoorwayHeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="317,65,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+                 VerticalAlignment="Top" Width="120" Margin="317,65,0,0" PreviewTextInput="TextBox_PreviewTextInput" />
         <TextBox x:Name="textBoxDoorwayWidth" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="120" Margin="317,95,0,0" PreviewTextInput="textBox_PreviewTextInput" />
+                 VerticalAlignment="Top" Width="120" Margin="317,95,0,0" PreviewTextInput="TextBox_PreviewTextInput" />
         <Button x:Name="buttonCheck" Content="Fridge get in check" HorizontalAlignment="Left" VerticalAlignment="Top"
-                Width="181" Margin="259,241,0,0" Height="48" FontSize="15" Click="buttonCheck_Click" />
+                Width="181" Margin="259,241,0,0" Height="48" FontSize="15" Click="ButtonCheck_Click" />
         <ComboBox x:Name="comboBoxDoorway" HorizontalAlignment="Left" Margin="259,198,0,0" VerticalAlignment="Top" Width="181"
                   SelectedIndex="0" Height="26" FontSize="15">
             <ComboBoxItem Content="Doorway" HorizontalAlignment="Left" Width="180"

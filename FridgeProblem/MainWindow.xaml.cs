@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -17,7 +18,7 @@ namespace FridgeProblem
         private const string positiveMessage = "Positive";
         private const string negativeMessage = "Negative";
 
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,273 +33,282 @@ namespace FridgeProblem
             //labelResult.Content = string.Empty;
         }
         
-        private void buttonCheck_Click(object sender, RoutedEventArgs e)
+        private void ButtonCheck_Click(object sender, RoutedEventArgs e)
         {
             var solution = new FridgePushIn();
-            switch (comboBoxFridgeShape.SelectedIndex)
+            try
             {
-                case 0:
-                    // check if all parameters of the fridge were entered
-                    if (textBoxFridgeHeight.Text == string.Empty ||
-                    textBoxFridgeLength.Text == string.Empty ||
-                    textBoxFridgeWidth.Text == string.Empty)
-                    {
-                        MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    // check if user entered zero as size
-                    if (double.Parse(textBoxFridgeHeight.Text) == 0 ||
-                        double.Parse(textBoxFridgeLength.Text) == 0 ||
-                        double.Parse(textBoxFridgeWidth.Text) == 0)
-                    {
-                        MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        var checkingFridge = new Cuboid(double.Parse(textBoxFridgeHeight.Text),
-                            double.Parse(textBoxFridgeLength.Text),
-                            double.Parse(textBoxFridgeWidth.Text));
-                        var check = false;
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
+                switch (comboBoxFridgeShape.SelectedIndex)
+                {
+                    case 0:
+                        // check if all parameters of the fridge were entered
+                        if (textBoxFridgeHeight.Text == string.Empty ||
+                        textBoxFridgeLength.Text == string.Empty ||
+                        textBoxFridgeWidth.Text == string.Empty)
                         {
-                            // check if all parameters of the doorway were entered
-                            if (textBoxDoorwayHeight.Text == string.Empty ||
-                                textBoxDoorwayWidth.Text == string.Empty)
-                            {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
-                                double.Parse(textBoxDoorwayWidth.Text) == 0)
-                            {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
-                                double.Parse(textBoxDoorwayWidth.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
+                            MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
                         }
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
+                        // check if user entered zero as size
+                        if (double.Parse(textBoxFridgeHeight.Text) == 0 ||
+                            double.Parse(textBoxFridgeLength.Text) == 0 ||
+                            double.Parse(textBoxFridgeWidth.Text) == 0)
                         {
-                            // check if all parameters of the window were entered
-                            if (textBoxDoorwayHeight.Text == string.Empty ||
-                                textBoxDoorwayWidth.Text == string.Empty)
-                            {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
-                                double.Parse(textBoxDoorwayWidth.Text) == 0)
-                            {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
-                                double.Parse(textBoxDoorwayWidth.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
-                        }
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
-                        {
-                            // check if all parameters of the window were entered
-                            if (textBoxWindowDiameter.Text == string.Empty)
-                            {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxWindowDiameter.Text) == 0)
-                            {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Circle(double.Parse(textBoxWindowDiameter.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
-                        }
-                        //output results
-                        if (check)
-                        {
-                            MessageBox.Show(positiveMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
-                            MessageBox.Show(negativeMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
-                        }
-                    }
-                    break;
-                case 1:
-                    if (textBoxFridgeHeight.Text == string.Empty ||
-                textBoxFridgeDiameter.Text == string.Empty)
-                    {
-                        MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    // check if user entered zero as size
-                    if (double.Parse(textBoxFridgeHeight.Text) == 0 ||
-                        double.Parse(textBoxFridgeDiameter.Text) == 0)
-                    {
-                        MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        var checkingFridge = new Cylinder(double.Parse(textBoxFridgeHeight.Text),
-                            double.Parse(textBoxFridgeDiameter.Text));
-                        var check = false;
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
-                        {
-                            // check if all parameters of the doorway were entered
-                            if (textBoxDoorwayHeight.Text == string.Empty ||
-                                textBoxDoorwayWidth.Text == string.Empty)
+                            var checkingFridge = new Cuboid(double.Parse(textBoxFridgeHeight.Text),
+                                double.Parse(textBoxFridgeLength.Text),
+                                double.Parse(textBoxFridgeWidth.Text));
+                            var check = false;
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
                             {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
+                                // check if all parameters of the doorway were entered
+                                if (textBoxDoorwayHeight.Text == string.Empty ||
+                                    textBoxDoorwayWidth.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
+                                    double.Parse(textBoxDoorwayWidth.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
+                                    double.Parse(textBoxDoorwayWidth.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
                             }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
-                                double.Parse(textBoxDoorwayWidth.Text) == 0)
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
                             {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
+                                // check if all parameters of the window were entered
+                                if (textBoxDoorwayHeight.Text == string.Empty ||
+                                    textBoxDoorwayWidth.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
+                                    double.Parse(textBoxDoorwayWidth.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
+                                    double.Parse(textBoxDoorwayWidth.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
                             }
-                            var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
-                                double.Parse(textBoxDoorwayWidth.Text));
-                            //var solution = new FridgePushIn();
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
-                        }
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
-                        {
-                            // check if all parameters of the window were entered
-                            if (textBoxDoorwayHeight.Text == string.Empty ||
-                                textBoxDoorwayWidth.Text == string.Empty)
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
                             {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
+                                // check if all parameters of the window were entered
+                                if (textBoxWindowDiameter.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxWindowDiameter.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Circle(double.Parse(textBoxWindowDiameter.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
                             }
-                            // check if user entered zero as size
 
-                            if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
-                                double.Parse(textBoxDoorwayWidth.Text) == 0)
+                            //output results
+                            if (check)
                             {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
+                                MessageBox.Show(positiveMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
                             }
-                            var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
-                                double.Parse(textBoxDoorwayWidth.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
+                            else
+                            {
+                                MessageBox.Show(negativeMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
+                            }
                         }
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
+                        break;
+                    case 1:
+                        if (textBoxFridgeHeight.Text == string.Empty ||
+                    textBoxFridgeDiameter.Text == string.Empty)
                         {
-                            // check if all parameters of the window were entered
-                            if (textBoxWindowDiameter.Text == string.Empty)
-                            {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxWindowDiameter.Text) == 0)
-                            {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Circle(double.Parse(textBoxWindowDiameter.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
+                            MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
                         }
-                        //output results
-                        if (check)
+                        // check if user entered zero as size
+                        if (double.Parse(textBoxFridgeHeight.Text) == 0 ||
+                            double.Parse(textBoxFridgeDiameter.Text) == 0)
                         {
-                            MessageBox.Show(positiveMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
-                            MessageBox.Show(negativeMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
-                        }
-                    }
-                    break;
-                case 2:
-                    if (textBoxFridgeDiameter.Text == string.Empty)
-                    {
-                        MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    // check if user entered zero as size
-                    if (double.Parse(textBoxFridgeDiameter.Text) == 0)
-                    {
-                        MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        var checkingFridge = new Sphere(double.Parse(textBoxFridgeDiameter.Text));
-                        var check = false;
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
-                        {
-                            // check if all parameters of the doorway were entered
-                            if (textBoxDoorwayHeight.Text == string.Empty ||
-                                textBoxDoorwayWidth.Text == string.Empty)
+                            var checkingFridge = new Cylinder(double.Parse(textBoxFridgeHeight.Text),
+                                double.Parse(textBoxFridgeDiameter.Text));
+                            var check = false;
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
                             {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
+                                // check if all parameters of the doorway were entered
+                                if (textBoxDoorwayHeight.Text == string.Empty ||
+                                    textBoxDoorwayWidth.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
+                                    double.Parse(textBoxDoorwayWidth.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
+                                    double.Parse(textBoxDoorwayWidth.Text));
+                                //var solution = new FridgePushIn();
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
                             }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
-                                double.Parse(textBoxDoorwayWidth.Text) == 0)
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
                             {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
-                                double.Parse(textBoxDoorwayWidth.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
-                        }
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
-                        {
-                            // check if all parameters of the window were entered
-                            if (textBoxDoorwayHeight.Text == string.Empty ||
-                                textBoxDoorwayWidth.Text == string.Empty)
-                            {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
-                                double.Parse(textBoxDoorwayWidth.Text) == 0)
-                            {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
-                                double.Parse(textBoxDoorwayWidth.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
-                        }
-                        if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
-                        {
-                            // check if all parameters of the window were entered
-                            if (textBoxWindowDiameter.Text == string.Empty)
-                            {
-                                MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            // check if user entered zero as size
-                            if (double.Parse(textBoxWindowDiameter.Text) == 0)
-                            {
-                                MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            var checkingHole = new Circle(double.Parse(textBoxWindowDiameter.Text));
-                            check = solution.PushInCheck(checkingFridge, checkingHole);
-                        }
-                        //output results
-                        if (check)
-                        {
-                            MessageBox.Show(positiveMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                        }
-                        else
-                        {
-                            MessageBox.Show(negativeMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
-                        }
-                    }
-                    break;
+                                // check if all parameters of the window were entered
+                                if (textBoxDoorwayHeight.Text == string.Empty ||
+                                    textBoxDoorwayWidth.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
 
+                                if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
+                                    double.Parse(textBoxDoorwayWidth.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
+                                    double.Parse(textBoxDoorwayWidth.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
+                            }
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
+                            {
+                                // check if all parameters of the window were entered
+                                if (textBoxWindowDiameter.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxWindowDiameter.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Circle(double.Parse(textBoxWindowDiameter.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
+                            }
+                            //output results
+                            if (check)
+                            {
+                                MessageBox.Show(positiveMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            }
+                            else
+                            {
+                                MessageBox.Show(negativeMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (textBoxFridgeDiameter.Text == string.Empty)
+                        {
+                            MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        // check if user entered zero as size
+                        if (double.Parse(textBoxFridgeDiameter.Text) == 0)
+                        {
+                            MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else
+                        {
+                            var checkingFridge = new Sphere(double.Parse(textBoxFridgeDiameter.Text));
+                            var check = false;
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[0])
+                            {
+                                // check if all parameters of the doorway were entered
+                                if (textBoxDoorwayHeight.Text == string.Empty ||
+                                    textBoxDoorwayWidth.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
+                                    double.Parse(textBoxDoorwayWidth.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
+                                    double.Parse(textBoxDoorwayWidth.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
+                            }
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[1])
+                            {
+                                // check if all parameters of the window were entered
+                                if (textBoxDoorwayHeight.Text == string.Empty ||
+                                    textBoxDoorwayWidth.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxDoorwayHeight.Text) == 0 ||
+                                    double.Parse(textBoxDoorwayWidth.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Rectangle(double.Parse(textBoxDoorwayHeight.Text),
+                                    double.Parse(textBoxDoorwayWidth.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
+                            }
+                            if (comboBoxDoorway.SelectedItem == comboBoxDoorway.Items[2])
+                            {
+                                // check if all parameters of the window were entered
+                                if (textBoxWindowDiameter.Text == string.Empty)
+                                {
+                                    MessageBox.Show(allParametersMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                // check if user entered zero as size
+                                if (double.Parse(textBoxWindowDiameter.Text) == 0)
+                                {
+                                    MessageBox.Show(zeroMessage, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
+                                var checkingHole = new Circle(double.Parse(textBoxWindowDiameter.Text));
+                                check = solution.PushInCheck(checkingFridge, checkingHole);
+                            }
+                            //output results
+                            if (check)
+                            {
+                                MessageBox.Show(positiveMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            }
+                            else
+                            {
+                                MessageBox.Show(negativeMessage, resultTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
+                            }
+                        }
+                        break;
+
+                }
+            }
+            //exception if input numbers are to big
+            catch (OverflowException ex)
+            {
+                MessageBox.Show(ex.Message, errorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -358,7 +368,7 @@ namespace FridgeProblem
             ClearAll();
         }
 
-        private void textBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // check if not number => not accept
             if (e.Text != "," && IsNumber(e.Text) == false)
@@ -379,6 +389,7 @@ namespace FridgeProblem
                 }
             }
         }
+
         private bool ComponentsInNullCheck()
         {
             bool check = false;
@@ -392,6 +403,7 @@ namespace FridgeProblem
             }
             return check;
         }
+
         private bool IsNumber(string inputText)
         {
             return int.TryParse(inputText, out var output);
@@ -414,6 +426,7 @@ namespace FridgeProblem
             textBoxFridgeWidth.Visibility = Visibility.Visible;
             textBoxFridgeDiameter.Visibility = Visibility.Hidden;
         }
+
         private void ComboBoxCylinder_Selected(object sender, RoutedEventArgs e)
         {
             //check if components were initialized
@@ -431,6 +444,7 @@ namespace FridgeProblem
             textBoxFridgeWidth.Visibility = Visibility.Hidden;
             textBoxFridgeDiameter.Visibility = Visibility.Visible;
         }
+
         private void ComboBoxSphere_Selected(object sender, RoutedEventArgs e)
         {
             //check if components were initialized
